@@ -1,12 +1,22 @@
+import { useState } from "react";
 import { Button } from "./components/Button";
 import { Card } from "./components/Card";
+import { CreateContentModal } from "./components/CreateContentModal";
 import { Sidebar } from "./components/Sidebar";
 import { PlusIcon } from "./icons/PlusIcon";
 import { ShareIcon } from "./icons/ShareIcon";
 
 function App() {
+  const [ModalOpen, SetModalOpen] = useState(false);
+
   return (
     <div className="flex">
+      <CreateContentModal
+        open={ModalOpen}
+        onClose={() => {
+          SetModalOpen(false);
+        }}
+      />
       <div>
         <Sidebar />
       </div>
@@ -25,6 +35,9 @@ function App() {
               variant="primary"
               text="Add Content"
               startIcon={<PlusIcon />}
+              onClick={() => {
+                SetModalOpen(true);
+              }}
             />
           </div>
         </div>

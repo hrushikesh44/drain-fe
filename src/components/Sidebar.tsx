@@ -8,7 +8,7 @@ export function Sidebar() {
         <div className="text-primary-color ">
           <MainLogo />
         </div>
-        <div className="text-black text-5xl font-bold ">Drain</div>
+        <div className="text-black text-5xl font-bold pr-4">Drain</div>
       </div>
       <SidebarItem type="twitter" />
       <SidebarItem type="videos" />
