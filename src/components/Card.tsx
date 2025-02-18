@@ -1,7 +1,8 @@
 import ReactPlayer from "react-player";
 import { DeleteIcon } from "../icons/DeleteIcon";
-import { FileIcon } from "../icons/FileIcon";
 import { ShareIcon } from "../icons/ShareIcon";
+import { TwitterIcon } from "../icons/TwitterIcon";
+import { PlayerIcon } from "../icons/PlayerIcon";
 
 interface CardProps {
   title: string;
@@ -15,8 +16,9 @@ export function Card({ title, link, type }: CardProps) {
       <div className="p-4 bg-white max-w-96  border border-slate-300 rounded-md shadow-md">
         <div className="flex justify-between ">
           <div className="flex ">
-            <div className="text-gray-500 pr-3">
-              <FileIcon />
+            <div className="text-gray-500 pr-3 pt-1">
+              {type === "twitter" && <TwitterIcon />}
+              {type === "youtube" && <PlayerIcon />}
             </div>
             <div className="font-medium text-lg">{title}</div>
           </div>

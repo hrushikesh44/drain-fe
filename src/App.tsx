@@ -23,7 +23,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="flex gap-4 pt-10">
+      <div className="flex gap-6 pt-10 ml-[20vw] ">
         <Card
           title="Buttler with warriors"
           link="https://youtu.be/2JG26c2uJ7k?si=42_beJNiaL2UZfoU"
