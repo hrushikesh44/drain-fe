@@ -1,6 +1,6 @@
 import { iconProps } from ".";
 
-export function TwitterIcon({ size }: iconProps) {
+export function LinkIcon({ size }: iconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,9 +12,16 @@ export function TwitterIcon({ size }: iconProps) {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={"lucide lucide-twitter" + " " + { size }}
+      className={"lucide lucide-link-2" + " " + { size }}
     >
-      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+      <path d="M9 17H7A5 5 0 0 1 7 7h2" />
+      <path d="M15 7h2a5 5 0 1 1 0 10h-2" />
+      <line
+        x1="8"
+        x2="16"
+        y1="12"
+        y2="12"
+      />
     </svg>
   );
 }

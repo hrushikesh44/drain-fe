@@ -16,9 +16,9 @@ export function Card({ title, link, type }: CardProps) {
       <div className="p-4 bg-white max-w-96  border border-slate-300 rounded-md shadow-md">
         <div className="flex justify-between ">
           <div className="flex ">
-            <div className="text-gray-500 pr-3 pt-1">
-              {type === "twitter" && <TwitterIcon />}
-              {type === "youtube" && <PlayerIcon />}
+            <div className="text-gray-500 pr-3 pt-0.5">
+              {type === "twitter" && <TwitterIcon size={"size-4"} />}
+              {type === "youtube" && <PlayerIcon size={"size-4"} />}
             </div>
             <div className="font-medium text-lg">{title}</div>
           </div>
