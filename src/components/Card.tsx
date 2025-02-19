@@ -23,7 +23,7 @@ export function Card({ title, link, type }: CardProps) {
             <div className="font-medium text-lg">{title}</div>
           </div>
           <div className="flex gap-2 pr-3 items-center">
-            <div className="text-gray-500">
+            <div className="text-gray-500 hover:text-3xl cursor-pointer">
               <a
                 href={link}
                 target="_blank"
@@ -31,7 +31,7 @@ export function Card({ title, link, type }: CardProps) {
                 <ShareIcon />
               </a>
             </div>
-            <div className="text-gray-500">
+            <div className="text-gray-500 hover:text-red-700 cursor-pointer">
               <DeleteIcon />
             </div>
           </div>

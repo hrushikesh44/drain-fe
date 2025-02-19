@@ -48,7 +48,7 @@ function App() {
             type="youtube"
           />
           <Card
-            title="My Tweet"
+            title="Kevin Durant about ASG"
             link="https://x.com/KDTrey5/status/1891541979504222218"
             type="twitter"
           />
