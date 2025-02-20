@@ -10,7 +10,7 @@ interface sideBarItemProps {
 
 export function SidebarItem({ type }: sideBarItemProps) {
   return (
-    <div className="w-48 flex text-2xl text-slate-600 font-normal mt-8 pl-4 ">
+    <div className="w-56 pt-1 pb-1 flex text-2xl text-slate-600 rounded-md font-normal mt-8 pl-4 hover:bg-gray-200 cursor-pointer transition-all duration-150">
       <div className="pt-[5px]">
         {type === "twitter" && <TwitterIcon size={"size-6"} />}
         {type === "videos" && <PlayerIcon size={"size-6"} />}

@@ -3,7 +3,7 @@ import { SidebarItem } from "./SidebarItem";
 
 export function Sidebar() {
   return (
-    <div className="w-[20vw] h-[100vh] p-5 bg-sidebar-bg border border-slate-300">
+    <div className="w-[15vw] h-[100vh] p-5 bg-sidebar-bg border border-slate-300">
       <div className=" flex justify-between">
         <div className="text-primary-color ">
           <MainLogo />

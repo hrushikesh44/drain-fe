@@ -5,6 +5,8 @@ interface ButtonProps {
   text: string;
   startIcon?: ReactNode;
   onClick?: () => void;
+  fullWidth?: boolean;
+  medium?: boolean;
 }
 
 const varaintStyles = {
@@ -12,13 +14,27 @@ const varaintStyles = {
   secondary: "bg-secondary-color text-purple-700",
 };
 
-const defaultStyles = "rounded-md px-4 py-2 flex items-center cursor-pointer";
+const defaultStyles =
+  "rounded-md pr-4 pl-2 py-2 flex justify-center items-center cursor-pointer";
 
-export function Button({ variant, text, startIcon, onClick }: ButtonProps) {
+export function Button({
+  variant,
+  text,
+  startIcon,
+  onClick,
+  fullWidth,
+  medium,
+}: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      className={varaintStyles[variant] + " " + defaultStyles}
+      className={
+        varaintStyles[variant] +
+        " " +
+        defaultStyles +
+        `${fullWidth ? " w-full flex justify-center items-center" : ""}` +
+        `${medium ? " w-[10vw]" : ""}`
+      }
     >
       <div className="pr-2">{startIcon}</div>
       {text}
