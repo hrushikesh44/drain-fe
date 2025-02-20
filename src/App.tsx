@@ -9,11 +9,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/dashboard"
             element={<Dashboard />}
           />
           <Route
-            path="/signup"
+            path="/"
             element={<Signup />}
           />
           <Route
