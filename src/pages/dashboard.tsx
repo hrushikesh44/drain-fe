@@ -5,9 +5,13 @@ import { CreateContentModal } from "../components/CreateContentModal";
 import { Sidebar } from "../components/Sidebar";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
+import { useContent } from "../hooks/useContent";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export function Dashboard() {
   const [ModalOpen, SetModalOpen] = useState(false);
+  const contents = useContent();
 
   return (
     <div className="flex">
@@ -30,6 +34,22 @@ export function Dashboard() {
               variant="secondary"
               text="Share Brain"
               startIcon={<ShareIcon />}
+              onClick={async () => {
+                const response = await axios.post(
+                  `${BACKEND_URL}/drain/share`,
+                  {
+                    share: true,
+                  },
+                  {
+                    headers: {
+                      token: localStorage.getItem("token"),
+                    },
+                  }
+                );
+                const shareUrl = `http://localhost:5173/drain/:${response.data.hash}`;
+                await navigator.clipboard.writeText(shareUrl);
+                alert("link copied to clip board");
+              }}
             />
             <Button
               variant="primary"
@@ -41,17 +61,14 @@ export function Dashboard() {
             />
           </div>
         </div>
-        <div className="flex gap-6 pt-10 ">
-          <Card
-            title="Buttler with warriors"
-            link="https://youtu.be/2JG26c2uJ7k?si=42_beJNiaL2UZfoU"
-            type="youtube"
-          />
-          <Card
-            title="Kevin Durant about ASG"
-            link="https://x.com/KDTrey5/status/1891541979504222218"
-            type="twitter"
-          />
+        <div className="flex gap-6 pt-10 flex-wrap">
+          {contents.contents.map(({ type, link, title }) => (
+            <Card
+              title={title}
+              link={link}
+              type={type}
+            />
+          ))}
         </div>
       </div>
     </div>

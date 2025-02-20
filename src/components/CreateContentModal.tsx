@@ -1,13 +1,45 @@
+import { useRef, useState } from "react";
 import { CloseIcon } from "../icons/CloseIcon";
 import { Button } from "./Button";
 import { InputBox } from "./InputBox";
+import { BACKEND_URL } from "../config";
+import axios from "axios";
 
 interface contentModalProps {
   open: boolean;
   onClose: () => void;
 }
 
+enum ContentTypes {
+  Youtube = "youtube",
+  Twitter = "twitter",
+}
+
 export function CreateContentModal({ open, onClose }: contentModalProps) {
+  const titleRef = useRef<HTMLInputElement>(null);
+  const linkRef = useRef<HTMLInputElement>(null);
+  const [type, setType] = useState(ContentTypes.Youtube);
+
+  async function addContent() {
+    const title = titleRef.current?.value;
+    const link = linkRef.current?.value;
+
+    await axios.post(
+      `${BACKEND_URL}/content`,
+      {
+        link,
+        title,
+        type,
+      },
+      {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }
+    );
+    onClose();
+  }
+
   return (
     <div>
       {open && (
@@ -20,20 +52,59 @@ export function CreateContentModal({ open, onClose }: contentModalProps) {
                   className="flex justify-between pr-6 cursor-pointer pl-3"
                   onClick={onClose}
                 >
-                  <p className="font-medium text-xl text-black pl-3">
+                  <h1 className="font-bold text-2xl text-black h1l-3">
                     Add Content
-                  </p>
+                  </h1>
                   <CloseIcon size={"size-6"} />
                 </div>
                 <div className="mt-3 gap-3 ml-2 w-full">
-                  <InputBox placeholder={"Title"} />
-                  <InputBox placeholder={"Link"} />
+                  <InputBox
+                    reference={titleRef}
+                    placeholder={"Title"}
+                  />
+                  <InputBox
+                    reference={linkRef}
+                    placeholder={"Link"}
+                  />
+                  <div>
+                    <h1 className="place-items-center text-2xl font-bold pl-36">
+                      Types
+                    </h1>
+                    <br></br>
+                    <div className="flex gap-1 -mt-3 ">
+                      <Button
+                        text="Youtube"
+                        variant={
+                          type === ContentTypes.Youtube
+                            ? "primary"
+                            : "secondary"
+                        }
+                        medium={true}
+                        onClick={() => {
+                          setType(ContentTypes.Youtube);
+                        }}
+                      />
+                      <Button
+                        text="Twitter"
+                        variant={
+                          type === ContentTypes.Twitter
+                            ? "primary"
+                            : "secondary"
+                        }
+                        medium={true}
+                        onClick={() => {
+                          setType(ContentTypes.Twitter);
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-center font-medium items-center pt-2">
+                <div className="flex justify-center font-medium items-center pt-4">
                   <Button
                     text="Submit"
                     variant="primary"
                     medium={true}
+                    onClick={addContent}
                   />
                 </div>
               </span>
